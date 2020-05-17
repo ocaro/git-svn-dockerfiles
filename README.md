@@ -10,7 +10,7 @@ To run a container where the subversion repository is in `/opt/svn` and the gene
 docker run --name $USER-git-svn --rm -it --volume /opt/svn:/opt/svn:ro --volume $PWD:/data orlandocaro/git-svn ash
 ```
 
-## Scripts available
+## Main scripts
 
 These scripts to help converting repositories are under `/usr/local/bin`.
 
