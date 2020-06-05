@@ -1,16 +1,16 @@
 #!/bin/sh
 
+. $(dirname $0)/functions.sh
+
 if [ -z "$HOME" ]; then
-    error "HOME environment variable is not set."
+    err "HOME environment variable is not set."
     exit 1
 fi
 
 if [ -z "$USER" ]; then
-    error "USER environment variable is not set."
+    err "USER environment variable is not set."
     exit 1
 fi
-
-. $(dirname $0)/functions.sh
 
 usage() {
     echo "Usage: $(basename $0) -s <svn repository url> -g <git repository name> -a <authors file>\nClones a repository from svn to git."
