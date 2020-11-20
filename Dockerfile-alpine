@@ -6,6 +6,7 @@ RUN apk add --no-cache bash \
         curl \
         findutils \
         git \
+        git-fast-import \
         git-svn \
         man-pages \
         mandoc \
