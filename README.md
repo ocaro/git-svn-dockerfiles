@@ -14,11 +14,16 @@ docker run --name $USER-git-svn --rm -it --volume /opt/svn:/opt/svn:ro --volume 
 
 These scripts to help converting repositories are under `/usr/local/bin`.
 
+`bashrc.sh` adds git completion and git prompt. Enable by switching to bash then
+```
+source /usr/local/bin/bashrc.sh
+```
+
 `authors.sh` creates a suitable [git-svn](https://git-scm.com/docs/git-svn) `authors-file` from subversion authors using `svn log`. Use if intending to fix author names and emails. 
 * Define the environment variable `EMAIL_DOMAIN` to include an email address.
 
 `clone.sh` is a wrapper around `git-svn clone` that also creates local branches and tags, and scrubs the git repository from subversion remnants. Run the script without parameters to see usage help.
-* Define the environment variable `AUTHORS_FILE` to use an authors file as `--authors-file`, otherwise generates the git author from the subversion author.
+* Defaults to the author file `/data/authors.txt`. Define the environment variable `AUTHORS_FILE` to use an another, otherwise generates the git author from the subversion author.
 * Define `CLONE_OPTS` to override the default options for `git svn clone` or to set more options.
 
 `clean-history.sh` rewrites the commit history. Creates a `.gitignore`, `.gitattributes`, `README.md` and a `develop` branch. Removes ignored files and directories, and renormalizes text files in all branches. Run the script within the git repository - it does not need parameters. The script relies on [git-filter-branch](https://git-scm.com/docs/git-filter-branch) to rewrite the commit history ignoring files in `.gitignore`, but the image also includes [newren/git-filter-repo](https://github.com/newren/git-filter-repo).

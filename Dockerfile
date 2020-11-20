@@ -22,18 +22,11 @@ RUN cd /usr/local/bin \
     && chmod 755 clean-ignore insert-beginning lint-history \
     && curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash \
     && curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+# Custom scripts
 ADD *.sh /usr/local/bin/
-RUN chmod 755 /usr/local/bin/*.sh
-
-# Git completion and prompt - root
-RUN touch $HOME/.bashrc \
-    && cat /usr/local/bin/bashrc.sh >> $HOME/.bashrc
+RUN chmod 755 /usr/local/bin/*.bash /usr/local/bin/*.sh
 
 RUN useradd --create-home gituser
 USER gituser
-
-# Git completion and prompt - user
-RUN touch $HOME/.bashrc \
-    && cat /usr/local/bin/bashrc.sh >> $HOME/.bashrc
 
 WORKDIR /data

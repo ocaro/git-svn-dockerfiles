@@ -32,19 +32,9 @@ RUN cd /usr/local/bin \
     && curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 # Custom scripts
 ADD *.sh /usr/local/bin/
-RUN chmod 755 /usr/local/bin/*.sh
-
-# Git completion and prompt - root
-RUN touch $HOME/.bashrc \
-    && cat /usr/local/bin/bashrc.sh >> $HOME/.bashrc \
-    && cat /usr/local/bin/bashrc.sh >> $HOME/.profile
+RUN chmod 755 /usr/local/bin/*.bash /usr/local/bin/*.sh
 
 RUN adduser -D -s /bin/bash gituser
 USER gituser
-
-# Git completion and prompt - user
-RUN touch $HOME/.bashrc \
-    && cat /usr/local/bin/bashrc.sh >> $HOME/.bashrc \
-    && cat /usr/local/bin/bashrc.sh >> $HOME/.profile
 
 WORKDIR /data
